@@ -22,3 +22,6 @@
 [submodule ".vim_runtime/my_plugins/vim-gitgutter"]
 	path = .vim_runtime/my_plugins/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule ".tmux/themes/nord-tmux"]
+	path = .tmux/themes/nord-tmux
+	url = https://github.com/arcticicestudio/nord-tmux
