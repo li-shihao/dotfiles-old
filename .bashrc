@@ -108,5 +108,19 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 set $EDITOR vim
 source ~/.bash-powerline.sh
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+	source "$(brew --prefix)/share/bash-completion/bash_completion";
+elif [ -f /etc/bash_completion ]; then
+	source /etc/bash_completion;
+fi;
+if ! fgrep -q "$(brew --prefix)/bin/bash" /etc/shells; then
+  echo "$(brew --prefix)/bin/bash" | sudo tee -a /etc/shells;
+  chsh -s "$(brew --prefix)/bin/bash";
+fi;

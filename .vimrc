@@ -10,6 +10,7 @@ source ~/.vim_runtime/my_configs.vim
 catch
 endtry
 
+filetype on
 set completeopt-=preview
 autocmd StdinReadPre * let s:std_in = 1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -27,13 +28,12 @@ let g:nord_italic = 1
 let g:nord_underline = 1
 let g:nord_italic_comments = 1
 let g:nord_uniform_status_lines = 1
-let g:nord_comment_brightness = 12
 let g:nord_uniform_diff_background = 1
 let g:nord_cursor_line_number_background = 1
 let g:nord_bold_vertical_split_line = 1
 let g:clang_format#auto_format=1
-let g:clang_format#code_style='llvm'
-let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.so'
+let g:clang_format#code_style='google'
+let g:clang_library_path='/usr/local/Cellar/llvm/8.0.0/lib/libclang.dylib'
 let g:clang_snippets = 1
 let g:clang_use_library = 1
 let g:clang_snippets_engine = 'clang_complete'
@@ -43,6 +43,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++17 -stdlib=libc++'
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
