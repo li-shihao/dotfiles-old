@@ -53,4 +53,3 @@ autoload -Uz zcalc
 
 export MPLBACKEND="module://itermplot"
 export ITERMPLOT=rv
-export ITERMPLOT_LINES=40
