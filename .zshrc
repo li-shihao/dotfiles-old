@@ -51,3 +51,4 @@ zgen load zsh-users/zsh-autosuggestions
 autoload -Uz zcalc
 
 
+export MPLBACKEND="module://itermplot"
