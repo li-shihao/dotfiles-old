@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'itchyny/vim-gitbranch'
 
 call vundle#end()
 syntax enable
@@ -35,7 +36,7 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'gitbranch#name'
       \ },
       \ 'component': {
       \   'readonly': '%{&readonly?"":""}',
