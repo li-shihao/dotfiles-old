@@ -45,3 +45,10 @@ let g:lightline = {
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
+" bindings
+nmap <silent> <C-h> :tabnext<CR>
+nmap <silent> <C-l> :tabprev<CR>
+imap <silent> <C-h> <esc><C-n>
+imap <silent> <C-l> <esc><C-p>
+nmap <silent> <C-w> :tabclose<CR>
+set backspace=indent,eol,start
