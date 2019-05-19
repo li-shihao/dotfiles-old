@@ -48,6 +48,7 @@ zgen load mafredri/zsh-async
 zgen load denysdovhan/spaceship-prompt spaceship
 zgen load zdharma/fast-syntax-highlighting
 zgen load zsh-users/zsh-autosuggestions
+
 autoload -Uz zcalc
 
 
