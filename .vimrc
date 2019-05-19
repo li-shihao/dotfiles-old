@@ -8,6 +8,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'itchyny/vim-gitbranch'
+Plugin 'tmhedberg/SimpylFold'
 
 call vundle#end()
 syntax enable
@@ -51,4 +52,10 @@ nmap <silent> <C-l> :tabprev<CR>
 imap <silent> <C-h> <esc><C-n>
 imap <silent> <C-l> <esc><C-p>
 nmap <silent> <C-w> :tabclose<CR>
+nnoremap <space> za
 set backspace=indent,eol,start
+
+" misc
+set foldmethod=indent
+set foldlevel=99
+
