@@ -1,0 +1,12 @@
+*
+
+!.zshrc
+!.zgen/*
+!.tmux.conf
+!./tmux/*
+!.gitmodules
+!linuxify/*
+!.update.zsh
+!.vim//*/*/*/*
+!.gitignore
+!.vimrc

@@ -4,3 +4,6 @@
 [submodule "linuxify"]
 	path = linuxify
 	url = https://github.com/fabiomaia/linuxify
+[submodule "/Users/arthur/.vim/bundle/Vundle.vim"]
+	path = /Users/arthur/.vim/bundle/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim.git
