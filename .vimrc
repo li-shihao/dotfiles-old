@@ -5,6 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'luochen1990/rainbow'
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'arcticicestudio/nord-vim'
@@ -13,7 +14,8 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'taohexxx/lightline-buffer'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'tmhedberg/SimpylFold'
-
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Raimondi/delimitMate'
 
 call vundle#end()
 syntax enable
@@ -93,6 +95,8 @@ let g:lightline_buffer_reservelen = 20
 
 " fold
 let g:SimpylFold_docstring_preview = 1
+set foldmethod=indent
+set foldlevel=99
 
 " bindings
 nnoremap <C-h> :bprev<CR>
@@ -105,9 +109,8 @@ set backspace=indent,eol,start
 set hlsearch
 set encoding=utf-8
 set incsearch
+set cursorcolumn
 highlight CursorLineNr ctermfg=220
-set foldmethod=indent
-set foldlevel=99
 :set number relativenumber
 
 :augroup numbertoggle
@@ -115,6 +118,7 @@ set foldlevel=99
 :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
+
 " nerdtree
 nnoremap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -145,3 +149,10 @@ let g:NERDTreeExactMatchHighlightColor = {}
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange 
 let g:NERDTreePatternMatchHighlightColor = {} 
 let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red "
+
+"nerdcommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+
+"rainbow
+let g:rainbow_active = 1
