@@ -1,11 +1,11 @@
 *
 !.zshrc
-!.zgen
+!.zgen/zgen/*
 !.tmux.conf
-!./.tmux/*/*/*/*
+!./.tmux/
 !.gitmodules
-!linuxify/*
+!linuxify/
 !.update.zsh
-!.vim//*/*/*/*
+!.vim/
 !.gitignore
 !.vimrc

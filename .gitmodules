@@ -8,6 +8,6 @@
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim
-[submodule "zgen"]
-	path = zgen
+[submodule ".zgen/zgen"]
+	path = .zgen/zgen
 	url = https://github.com/tarjoilija/zgen.git

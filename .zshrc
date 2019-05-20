@@ -1,4 +1,4 @@
-source "${HOME}/.zgen/zgen.zsh"
+source "${HOME}/.zgen/zgen/zgen.zsh"
 . /usr/local/etc/profile.d/z.sh
 export LC_ALL=en_US.UTF-8
 setopt correct_all
