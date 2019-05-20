@@ -3,7 +3,7 @@
 !.zshrc
 !.zgen/*
 !.tmux.conf
-!./tmux/*
+!./.tmux/*/*/*/*
 !.gitmodules
 !linuxify/*
 !.update.zsh

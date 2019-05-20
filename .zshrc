@@ -1,5 +1,5 @@
 source "${HOME}/.zgen/zgen.zsh"
-source "${HOME}/linuxify/.linuxify"
+. /usr/local/etc/profile.d/z.sh
 export LC_ALL=en_US.UTF-8
 setopt correct_all
 setopt auto_cd
@@ -45,10 +45,39 @@ alias 9='cd -9'
 alias ls='ls -al --color=auto'
 alias grep='grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 zgen load mafredri/zsh-async
-zgen load denysdovhan/spaceship-prompt spaceship
+zgen load sindresorhus/pure
 zgen load zdharma/fast-syntax-highlighting
 zgen load zsh-users/zsh-autosuggestions
 
 autoload -Uz zcalc
 
-
+# exports
+export PATH="/usr/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export MANPATH="/usr/local/share/man:$MANPATH"
+export INFOPATH="/usr/local/share/info:$INFOPATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="/usr/local/opt/binutils/bin:$PATH"
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/make/libexec/gnuman:$MANPATH"
+export PATH="/usr/local/opt/m4/bin:$PATH"
+export PATH="/usr/local/opt/file-formula/bin:$PATH"
+export PATH="/usr/local/opt/unzip/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/usr/local/opt/flex/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/flex/lib"
+export CPPFLAGS="-I/usr/local/opt/flex/include"
+export PATH="/usr/local/opt/bison/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/bison/lib"
+export PATH="/usr/local/opt/libressl/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/libressl/lib"
+export CPPFLAGS="-I/usr/local/opt/libressl/include"
+export PKG_CONFIG_PATH="/usr/local/opt/libressl/lib/pkgconfig"
+export PATH="/usr/local/opt/ed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-indent/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-which/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"

@@ -6,11 +6,11 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'luochen1990/rainbow'
+Plugin 'Yggdroot/indentLine'
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'arcticicestudio/nord-vim'
+Plugin 'Lenovsky/ayu-vim'
 Plugin 'itchyny/vim-gitbranch'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'taohexxx/lightline-buffer'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'tmhedberg/SimpylFold'
@@ -20,19 +20,14 @@ Plugin 'Raimondi/delimitMate'
 call vundle#end()
 syntax enable
 filetype plugin indent on
-
-" nord
-let g:nord_underline = 1
-let g:nord_italic_comments = 1
-let g:nord_uniform_status_lines = 1
-let g:nord_uniform_diff_background = 1
-let g:nord_cursor_line_number_background = 1
-let g:nord_bold_vertical_split_line = 1
-colorscheme nord
-
-" ycm
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+set termguicolors
+let ayucolor='mirage'
+colorscheme ayu
 
 " lightline
 set hidden
@@ -43,7 +38,7 @@ if !has('gui_running')
 endif
 set noshowmode
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'ayu',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -99,9 +94,22 @@ set foldmethod=indent
 set foldlevel=99
 
 " bindings
-nnoremap <C-h> :bprev<CR>
-nnoremap <C-l> :bnext<CR>
-nnoremap <C-w> :bd<CR>
+set wildchar=<Tab> wildmenu wildmode=full
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+nnoremap <Leader>w :bd<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 nnoremap <space> za
 set backspace=indent,eol,start
 
@@ -150,9 +158,17 @@ let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange
 let g:NERDTreePatternMatchHighlightColor = {} 
 let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red "
 
-"nerdcommenter
+" nerdcommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
-"rainbow
+" rainbow
 let g:rainbow_active = 1
+
+" indent line
+let g:indentLine_char = ''
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
+" }}
+
