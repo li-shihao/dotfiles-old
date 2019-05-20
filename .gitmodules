@@ -1,6 +1,3 @@
-[submodule ".tmux/themes/nord-tmux"]
-	path = .tmux/themes/nord-tmux
-	url = https://github.com/arcticicestudio/nord-tmux
 [submodule "/Users/arthur/.vim/bundle/Vundle.vim"]
 	path = /Users/arthur/.vim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
