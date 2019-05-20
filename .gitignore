@@ -1,5 +1,6 @@
 *
 !.zshrc
+!install.sh
 !.zgen/zgen/*
 !.tmux.conf
 !./.tmux/
