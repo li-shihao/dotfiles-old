@@ -1,7 +1,7 @@
 *
 
 !.zshrc
-!.zgen/*
+!.zgen/*/*/**
 !.tmux.conf
 !./.tmux/*/*/*/*
 !.gitmodules
