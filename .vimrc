@@ -5,7 +5,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'luochen1990/rainbow'
+Plugin 'frazrepo/vim-rainbow'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'szw/vim-maximizer'
 Plugin 'Yggdroot/indentLine'
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
@@ -16,9 +18,16 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Raimondi/delimitMate'
+Plugin 'Konfekt/FastFold'
+Plugin 'zhimsel/vim-stay'
 
 call vundle#end()
+
 syntax enable
+set re=1
+set timeoutlen=200
+set viewoptions=cursor,folds,slash,unix
+let g:fastfold_savehook = 1
 filetype plugin indent on
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -89,8 +98,8 @@ let g:lightline_buffer_minfextlen = 3
 let g:lightline_buffer_reservelen = 20
 
 " fold
-let g:SimpylFold_docstring_preview = 1
-set foldmethod=indent
+let g:simpylfold_docstring_preview = 1
+set foldmethod=syntax
 set foldlevel=99
 
 " bindings
@@ -106,10 +115,6 @@ nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 nnoremap <Leader>w :bd<CR>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 nnoremap <space> za
 set backspace=indent,eol,start
 
@@ -164,11 +169,20 @@ let g:NERDCompactSexyComs = 1
 
 " rainbow
 let g:rainbow_active = 1
+nnoremap <Leader>t :RainbowToggle<CR> 
 
 " indent line
 let g:indentLine_char = ''
 let g:indentLine_first_char = ''
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
-" }}
 
+" tmux
+let g:tmux_navigator_save_on_switch = 2
+ 
+" maxi
+let g:maximizer_default_mapping_key = '<C-o>'
+
+" misc
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
