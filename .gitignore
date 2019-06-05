@@ -10,4 +10,5 @@
 !.vim/
 !.gitignore
 !.vimrc
-!.cache/deoplete
+!.cache/dein/repos/github.com/Shougo/dein.vim/*
+!.config/nvim/init.vim
