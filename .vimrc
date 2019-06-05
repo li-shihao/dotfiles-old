@@ -1,35 +1,46 @@
-set nocompatible
-filetype off
+if &compatible
+  set nocompatible
+endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'frazrepo/vim-rainbow'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'szw/vim-maximizer'
-Plugin 'Yggdroot/indentLine'
-Plugin 'itchyny/lightline.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Lenovsky/ayu-vim'
-Plugin 'itchyny/vim-gitbranch'
-Plugin 'taohexxx/lightline-buffer'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Raimondi/delimitMate'
-Plugin 'Konfekt/FastFold'
-Plugin 'zhimsel/vim-stay'
-Plugin 'sunaku/vim-dasht'
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
-call vundle#end()
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('numirias/semshi')
+  call dein#add('arakashic/chromatica.nvim')
+  call dein#add('deoplete-plugins/deoplete-zsh')
+  call dein#add('deoplete-plugins/deoplete-jedi')
+  call dein#add('christoomey/vim-tmux-navigator')
+  call dein#add('szw/vim-maximizer')
+  call dein#add('Yggdroot/indentLine')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('Lenovsky/ayu-vim')
+  call dein#add('itchyny/vim-gitbranch')
+  call dein#add('taohexxx/lightline-buffer')
+  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+  call dein#add('tmhedberg/SimpylFold')
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('Raimondi/delimitMate')
+  call dein#add('Shougo/deoplete-clangx')
+  call dein#add('Konfekt/FastFold')
+  call dein#add('zhimsel/vim-stay')
+  call dein#add('sunaku/vim-dasht')
 
+  call dein#end()
+  call dein#save_state()
+endif
+
+filetype plugin indent on
 syntax enable
+
 set re=1
 set timeoutlen=200
 set viewoptions=cursor,folds,slash,unix
 let g:fastfold_savehook = 1
-filetype plugin indent on
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -168,10 +179,6 @@ let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red "
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
-" rainbow
-let g:rainbow_active = 1
-nnoremap <Leader>t :RainbowToggle<CR> 
-
 " indent line
 let g:indentLine_char = ''
 let g:indentLine_first_char = ''
@@ -196,3 +203,7 @@ let g:dasht_filetype_docsets = {
 	\ 'c' : ['c', 'intelasmx86', 'man_pages'],
 	\ 'python' : ['numpy', 'scipy', 'pandas', 'opencv_python', 'keras', 'pytorch',  'matplotlib', 'python_2', 'python_3', 'scikit-learn', 'pwntools']
 	\ }
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+set completeopt-=preview

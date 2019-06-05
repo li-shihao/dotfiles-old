@@ -11,3 +11,6 @@
 [submodule ".zgen/zgen"]
 	path = .zgen/zgen
 	url = https://github.com/tarjoilija/zgen.git
+[submodule "/Users/arthur/.cache/dein/repos/github.com/Shougo/dein.vim"]
+	path = /Users/arthur/.cache/dein/repos/github.com/Shougo/dein.vim
+	url = https://github.com/Shougo/dein.vim

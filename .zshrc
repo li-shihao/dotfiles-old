@@ -38,6 +38,9 @@ bindkey '^[3;5~' delete-char
 
 alias d='dirs -v | head -10'
 alias cat='bat'
+alias vim="nvim"
+alias vi="nvim"
+alias oldvim="vim"
 alias tree='alder'
 alias lg="git log --graph --pretty=format:'%Cred%h%Creset - %Cgreen(%ad)%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=local"
 alias 1='cd -'
@@ -96,3 +99,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 source ~/.iterm2_shell_integration.zsh
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 export BAT_THEME="ayu-mirage"
+export EDITOR="nvim"
