@@ -6,9 +6,7 @@
 !./.tmux/
 !.gitmodules
 !linuxify/
-!.update.zsh
-!.vim/
 !.gitignore
 !.vimrc
 !.cache/dein/repos/github.com/Shougo/dein.vim/*
-!.config/nvim/init.vim
+!*/init.vim
