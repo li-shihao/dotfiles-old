@@ -6,7 +6,6 @@ set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
-
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('numirias/semshi')
@@ -33,6 +32,12 @@ if dein#load_state('~/.cache/dein')
   call dein#end()
   call dein#save_state()
 endif
+
+if dein#check_install()
+  call dein#install()
+endif
+
+call map(dein#check_clean(), "delete(v:val, 'rf')")
 
 filetype plugin indent on
 syntax enable
@@ -144,6 +149,9 @@ highlight CursorLineNr ctermfg=220
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
 " nerdtree
 nnoremap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -191,10 +199,6 @@ let g:tmux_navigator_save_on_switch = 2
 " maxi
 let g:maximizer_default_mapping_key = '<C-o>'
 
-" misc
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-
 " dasht
 nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
 vnoremap <silent> <leader>k y:<C-U>call Dasht(getreg(0))<Return>
@@ -207,3 +211,14 @@ let g:dasht_filetype_docsets = {
 " deoplete
 let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
+\ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+" chromatica
+let g:chromatica#libclang_path='/usr/local/Cellar/llvm/8.0.0_1/Toolchains/LLVM8.0.0.xctoolchain/usr/lib/libclang.dylib'
+let g:chromatica#responsive_mode=1
