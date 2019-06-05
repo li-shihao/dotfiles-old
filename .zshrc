@@ -15,7 +15,11 @@ HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=$HISTSIZE
 zmodload -i zsh/complist
-
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^E" edit-command-line
+DIRSTACKSIZE=8
+setopt autopushd pushdminus pushdsilent pushdtohome
 setopt hist_ignore_all_dups # remove older duplicate entries from history
 setopt hist_reduce_blanks # remove superfluous blanks from history items
 setopt inc_append_history # save history entries as soon as they are entered
@@ -33,6 +37,9 @@ bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
 
 alias d='dirs -v | head -10'
+alias cat='bat'
+alias tree='alder'
+alias lg="git log --graph --pretty=format:'%Cred%h%Creset - %Cgreen(%ad)%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=local"
 alias 1='cd -'
 alias 2='cd -2'
 alias 3='cd -3'
@@ -88,3 +95,4 @@ export PATH="/usr/local/opt/libressl/bin:$PATH"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 source ~/.iterm2_shell_integration.zsh
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+export BAT_THEME="ayu-mirage"

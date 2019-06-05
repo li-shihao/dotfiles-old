@@ -20,6 +20,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'Raimondi/delimitMate'
 Plugin 'Konfekt/FastFold'
 Plugin 'zhimsel/vim-stay'
+Plugin 'sunaku/vim-dasht'
 
 call vundle#end()
 
@@ -186,3 +187,11 @@ let g:maximizer_default_mapping_key = '<C-o>'
 " misc
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
+" dasht
+nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
+vnoremap <silent> <leader>k y:<C-U>call Dasht(getreg(0))<Return>
+let g:dasht_filetype_docsets = {
+	\ 'cpp' : ['cpp', 'c', 'boost', 'OpenGL'],
+	\ 'python' : ['numpy', 'scipy', 'pandas', 'keras', 'pytorch', 'matplotlib', 'python_2', 'python_3', 'scikit-learn']
+	\ }
