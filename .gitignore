@@ -10,3 +10,4 @@
 !.vim/
 !.gitignore
 !.vimrc
+!.cache/deoplete
