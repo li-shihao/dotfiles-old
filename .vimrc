@@ -192,6 +192,7 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 nnoremap <silent> <Leader>k :call Dasht([expand('<cword>'), expand('<cWORD>')])<Return>
 vnoremap <silent> <leader>k y:<C-U>call Dasht(getreg(0))<Return>
 let g:dasht_filetype_docsets = {
-	\ 'cpp' : ['cpp', 'c', 'boost', 'OpenGL'],
-	\ 'python' : ['numpy', 'scipy', 'pandas', 'keras', 'pytorch', 'matplotlib', 'python_2', 'python_3', 'scikit-learn']
+	\ 'cpp' : ['cpp', 'c', 'boost', 'man_pages'],
+	\ 'c' : ['c', 'intelasmx86', 'man_pages'],
+	\ 'python' : ['numpy', 'scipy', 'pandas', 'opencv_python', 'keras', 'pytorch',  'matplotlib', 'python_2', 'python_3', 'scikit-learn', 'pwntools']
 	\ }
