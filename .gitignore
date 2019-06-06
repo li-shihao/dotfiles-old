@@ -1,12 +1,10 @@
 *
 !.zshrc
 !install.sh
-!.zgen/zgen/*
 !.tmux.conf
-!./.tmux/
 !.gitmodules
-!linuxify/
 !.gitignore
 !.vimrc
-!.cache/dein/repos/github.com/Shougo/dein.vim/*
 !*/init.vim
+!.chunkwmrc
+!.skhdrc

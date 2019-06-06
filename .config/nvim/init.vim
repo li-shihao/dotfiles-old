@@ -219,3 +219,4 @@ function! s:defx_my_settings() abort
 nnoremap <C-n> :Defx -split=vertical -winwidth=30 -direction=topleft -columns=indent:icon:filename:type -listed -toggle -search=`expand('%:p')` `getcwd()`<CR>
 let g:indentLine_fileType = ['c', 'cpp', 'py', 'vim', 'sh', 'js', 'html', 'css']
 let g:minimap_highlight='StatusLine'
+
