@@ -6,4 +6,4 @@
 !.gitignore
 !.vimrc
 !*/init.vim
-!screenshots/*
+!screenshots/
