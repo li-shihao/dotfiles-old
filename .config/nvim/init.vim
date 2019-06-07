@@ -11,7 +11,6 @@ if dein#load_state('~/.cache/dein')
   set  runtimepath+=/usr/local/opt/fzf
   call dein#add('junegunn/fzf.vim')
   call dein#add('Shougo/defx.nvim')
-  call dein#add('Shougo/neomru.vim')
   call dein#add('autozimu/LanguageClient-neovim', {
     \ 'rev': 'next',
     \ 'build': 'bash install.sh',
@@ -247,9 +246,6 @@ let blacklist = ['python']
 autocmd CursorMoved *.cpp exe printf('match SemshiSelected /\V\%%(\<\k\*\%%#\k\*\>\)\@!\&\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " fzf
-autocmd FileType fzf setlocal nobuflisted
-autocmd FileType fzf set norelativenumber
-autocmd FileType fzf set nonumber 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg -uu --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,

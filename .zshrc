@@ -103,6 +103,6 @@ source ~/.iterm2_shell_integration.zsh
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 export BAT_THEME="ayu-mirage"
 export EDITOR="nvim"
-export FZF_DEFAULT_COMMAND='rg -uu --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg -uu --files --no-ignore --hidden 2>/dev/null'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

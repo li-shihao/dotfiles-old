@@ -6,5 +6,5 @@
 !.gitignore
 !.vimrc
 !*/init.vim
-!screenshots/
+!!screenshots/
 !README.md
