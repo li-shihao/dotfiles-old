@@ -38,8 +38,8 @@ bindkey '^[3;5~' delete-char
 
 alias d='dirs -v | head -10'
 alias cat='bat --theme ayu'
-alias fzft="fzf-tmux -d 50% --multi --reverse --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
-alias fzf="fzf --multi --reverse --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+alias fzft="fzf-tmux -d 50% --multi --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+alias fzf="fzf --multi --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 alias vim="nvim"
 alias vi="nvim"
 alias oldvim="vim"
