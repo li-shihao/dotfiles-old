@@ -9,12 +9,13 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/defx.nvim')
+  call dein#add('autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ })
   call dein#add('severin-lemaignan/vim-minimap')
-  call dein#add('KeitaNakamura/highlighter.nvim')
   call dein#add('numirias/semshi')
   call dein#add('junegunn/rainbow_parentheses.vim')
-  call dein#add('deoplete-plugins/deoplete-zsh')
-  call dein#add('deoplete-plugins/deoplete-jedi')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('szw/vim-maximizer')
   call dein#add('Yggdroot/indentLine')
@@ -25,7 +26,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tmhedberg/SimpylFold')
   call dein#add('scrooloose/nerdcommenter')
   call dein#add('Raimondi/delimitMate')
-  call dein#add('Shougo/deoplete-clangx')
   call dein#add('Konfekt/FastFold')
   call dein#add('zhimsel/vim-stay')
   call dein#add('sunaku/vim-dasht')
@@ -143,13 +143,7 @@ set encoding=utf-8
 set incsearch
 set cursorcolumn
 highlight CursorLineNr ctermfg=220
-:set number relativenumber
-
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-:augroup END
+set number relativenumber
 
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
@@ -182,26 +176,50 @@ let g:dasht_filetype_docsets = {
 " deoplete
 let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 function! s:check_back_space() abort "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
+
+set hidden
+let g:LanguageClient_serverCommands = {
+      \ 'c': ['ccls'],
+      \ 'cpp': ['ccls'],
+      \ 'objc': ['ccls'],
+      \ 'python': ['pyls'],
+      \ }
+let g:LanguageClient_loadSettings = 1 
+let g:LanguageClient_settingsPath = '/Users/arthur/.config/nvim/settings.json'
+function SetLSPShortcuts()
+  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction()
+
+call deoplete#custom#source('LanguageClient',
+            \ 'min_pattern_length',
+            \ 2)
+let g:LanguageClient_diagnosticsEnable = 0
 
 " rainbow_parentheses
 au VimEnter * RainbowParentheses
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
-" highlighter
-au VimEnter * HighlighterUpdate
-let g:highlighter#disabled_languages = ['python']
-let g:highlighter#auto_update = 1
-
 " defx
 autocmd FileType defx setlocal nobuflisted
+autocmd FileType defx set norelativenumber
+autocmd FileType defx set nonumber 
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
 	setl nonumber
@@ -216,7 +234,9 @@ function! s:defx_my_settings() abort
 	nnoremap <silent><buffer><expr> ~     defx#async_action('cd')
 	nnoremap <silent><buffer><expr> o     defx#do_action('open_or_close_tree')
 	endfunction
-nnoremap <C-n> :Defx -split=vertical -winwidth=30 -direction=topleft -columns=indent:icon:filename:type -listed -toggle -search=`expand('%:p')` `getcwd()`<CR>
+nnoremap <silent> <C-n> :Defx -split=vertical -winwidth=30 -direction=topleft -columns=indent:icon:filename:type -listed -toggle -search=`expand('%:p')` `getcwd()`<CR>
 let g:indentLine_fileType = ['c', 'cpp', 'py', 'vim', 'sh', 'js', 'html', 'css']
 let g:minimap_highlight='StatusLine'
+
+" autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 

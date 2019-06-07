@@ -54,6 +54,7 @@ alias 8='cd -8'
 alias 9='cd -9'
 alias ls='ls -al --color=auto'
 alias grep='grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+alias ag='ag --silent'
 zgen load mafredri/zsh-async
 zgen load sindresorhus/pure
 zgen load zdharma/fast-syntax-highlighting
