@@ -8,7 +8,10 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('Shougo/deoplete.nvim')
+  set  runtimepath+=/usr/local/opt/fzf
+  call dein#add('junegunn/fzf.vim')
   call dein#add('Shougo/defx.nvim')
+  call dein#add('Shougo/neomru.vim')
   call dein#add('autozimu/LanguageClient-neovim', {
     \ 'rev': 'next',
     \ 'build': 'bash install.sh',
@@ -240,3 +243,15 @@ let g:minimap_highlight='StatusLine'
 
 " autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
+" fzf
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+autocmd FileType fzf setlocal nobuflisted
+autocmd FileType fzf set norelativenumber
+autocmd FileType fzf set nonumber 

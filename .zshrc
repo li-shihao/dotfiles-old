@@ -37,7 +37,8 @@ bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
 
 alias d='dirs -v | head -10'
-alias cat='bat'
+alias cat='bat --theme ayu'
+alias fzf="fzf-tmux -l 50% --multi --reverse --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 alias vim="nvim"
 alias vi="nvim"
 alias oldvim="vim"
@@ -101,3 +102,6 @@ source ~/.iterm2_shell_integration.zsh
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 export BAT_THEME="ayu-mirage"
 export EDITOR="nvim"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
