@@ -256,20 +256,6 @@ command! -bang -nargs=* Rg
   \ fzf#vim#with_preview(), <bang>0)
 command! -bang -nargs=? -complete=dir Files
     \ echo "\r\r" | call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-" let g:fzf_colors = {
-	" \ 'fg':	     ['fg', 'StatusLineNC'],
-	" \ 'bg':      ['bg', 'NormalFloat'],
-	" \ 'hl':      ['fg', 'String'],
-	" \ 'fg+':     ['fg', 'Number', 'Normal'],
-	" \ 'bg+':     ['bg', 'StatusLine', 'Normal'],
-	" \ 'hl+':     ['fg', 'Exception'],
-	" \ 'info':    ['fg', 'Special'],
-	" \ 'prompt':  ['fg', 'Function'],
-	" \ 'pointer': ['fg', 'Error'],
-	" \ 'marker':  ['fg', 'Error'],
-	" \ 'spinner': ['fg', 'Statement'],
-	" \ 'header':  ['fg', 'Number'],
-	" \   }
 let g:fzf_colors = {
 	\ 'fg':      ['fg', 'StatusLineNC'],
  	\ 'bg':      ['bg', 'StatusLineNC'],
