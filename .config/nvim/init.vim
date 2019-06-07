@@ -22,6 +22,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('szw/vim-maximizer')
   call dein#add('Yggdroot/indentLine')
+  call dein#add('arakashic/chromatica.nvim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('Lenovsky/ayu-vim')
   call dein#add('itchyny/vim-gitbranch')
@@ -255,3 +256,10 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 autocmd FileType fzf setlocal nobuflisted
 autocmd FileType fzf set norelativenumber
 autocmd FileType fzf set nonumber 
+
+" chromatica
+let g:chromatica#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:chromatica#enable_at_startup=1
+let g:chromatica#responsive_mode=1
+let g:chromatica#enable_log=1
+let g:chromatica#highlight_feature_level=1
