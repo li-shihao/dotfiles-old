@@ -38,6 +38,7 @@ bindkey '^[3;5~' delete-char
 
 alias d='dirs -v | head -10'
 alias cat='bat --theme ayu'
+alias rg='rg -uu'
 alias fzft="fzf-tmux -d 50% --multi --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 alias fzf="fzf --multi --ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 alias vim="nvim"
@@ -56,7 +57,6 @@ alias 8='cd -8'
 alias 9='cd -9'
 alias ls='ls -al --color=auto'
 alias grep='grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
-alias ag='ag --silent'
 zgen load mafredri/zsh-async
 zgen load sindresorhus/pure
 zgen load zdharma/fast-syntax-highlighting
@@ -103,6 +103,6 @@ source ~/.iterm2_shell_integration.zsh
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 export BAT_THEME="ayu-mirage"
 export EDITOR="nvim"
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg -uu --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

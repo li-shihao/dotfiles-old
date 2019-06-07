@@ -148,10 +148,12 @@ set incsearch
 set cursorcolumn
 highlight CursorLineNr ctermfg=220
 set number relativenumber
-
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
+" semshi
+let g:semshi#excluded_hl_groups=[]
+let g:semshi#simplify_markup=0
 " nerdcommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -241,19 +243,18 @@ function! s:defx_my_settings() abort
 nnoremap <silent> <C-n> :Defx -split=vertical -winwidth=30 -direction=topleft -columns=indent:icon:filename:type -listed -toggle -search=`expand('%:p')` `getcwd()`<CR>
 let g:indentLine_fileType = ['c', 'cpp', 'py', 'vim', 'sh', 'js', 'html', 'css']
 let g:minimap_highlight='StatusLine'
-" autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+let blacklist = ['python']
+autocmd CursorMoved * if index(blacklist, &ft) < 0 | exe printf('match SemshiSelected /\V\%%(\<\k\*\%%#\k\*\>\)\@!\&\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " fzf
-function! s:fzf_statusline()
-  highlight fzf1 ctermfg=161 ctermbg=251
-  highlight fzf2 ctermfg=23 ctermbg=251
-  highlight fzf3 ctermfg=237 ctermbg=251
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-endfunction
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
 autocmd FileType fzf setlocal nobuflisted
 autocmd FileType fzf set norelativenumber
 autocmd FileType fzf set nonumber 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg -uu --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \ fzf#vim#with_preview(), <bang>0)
+
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -273,5 +274,4 @@ let g:fzf_colors =
 let g:chromatica#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:chromatica#enable_at_startup=1
 let g:chromatica#responsive_mode=1
-let g:chromatica#enable_log=1
 let g:chromatica#highlight_feature_level=1
