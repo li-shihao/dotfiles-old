@@ -244,7 +244,7 @@ nnoremap <silent> <C-n> :Defx -split=vertical -winwidth=30 -direction=topleft -c
 let g:indentLine_fileType = ['c', 'cpp', 'py', 'vim', 'sh', 'js', 'html', 'css']
 let g:minimap_highlight='StatusLine'
 let blacklist = ['python']
-autocmd CursorMoved * if index(blacklist, &ft) < 0 | exe printf('match SemshiSelected /\V\%%(\<\k\*\%%#\k\*\>\)\@!\&\<%s\>/', escape(expand('<cword>'), '/\'))
+autocmd CursorMoved *.cpp exe printf('match SemshiSelected /\V\%%(\<\k\*\%%#\k\*\>\)\@!\&\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " fzf
 autocmd FileType fzf setlocal nobuflisted
@@ -254,22 +254,63 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg -uu --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \ fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=? -complete=dir Files
+    \ echo "\r\r" | call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+" let g:fzf_colors = {
+	" \ 'fg':	     ['fg', 'StatusLineNC'],
+	" \ 'bg':      ['bg', 'NormalFloat'],
+	" \ 'hl':      ['fg', 'String'],
+	" \ 'fg+':     ['fg', 'Number', 'Normal'],
+	" \ 'bg+':     ['bg', 'StatusLine', 'Normal'],
+	" \ 'hl+':     ['fg', 'Exception'],
+	" \ 'info':    ['fg', 'Special'],
+	" \ 'prompt':  ['fg', 'Function'],
+	" \ 'pointer': ['fg', 'Error'],
+	" \ 'marker':  ['fg', 'Error'],
+	" \ 'spinner': ['fg', 'Statement'],
+	" \ 'header':  ['fg', 'Number'],
+	" \   }
+let g:fzf_colors = {
+	\ 'fg':      ['fg', 'StatusLineNC'],
+ 	\ 'bg':      ['bg', 'StatusLineNC'],
+ 	\ 'hl':      ['fg', 'Comment'],
+ 	\ 'fg+':     ['fg', 'Special', 'CursorColumn', 'Normal'],
+ 	\ 'bg+':     ['bg', 'Visual', 'CursorColumn'],
+ 	\ 'hl+':     ['fg', 'WarningMsg'],
+ 	\ 'info':    ['fg', 'StatusLine'],
+ 	\ 'border':  ['fg', 'Comment'],
+ 	\ 'prompt':  ['fg', 'Spellcap'],
+ 	\ 'pointer': ['fg', 'Exception'],
+ 	\ 'marker':  ['fg', 'Keyword'],
+ 	\ 'spinner': ['fg', 'Label'],
+ 	\ 'header':  ['fg', 'Comment'],
+	\	}
 
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-"
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+function! FloatingFZF()
+let height = &lines - 3
+  let width = float2nr(&columns - (&columns * 2 / 10))
+  let col = float2nr((&columns - width) / 2)
+  let col_offset = &columns / 6
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': height * 0.3,
+        \ 'col': col + col_offset,
+        \ 'width': width * 2 / 3,
+        \ 'height': height / 2
+        \ }
+  let buf = nvim_create_buf(v:false, v:true)
+  let win = nvim_open_win(buf, v:true, opts)
+  call setwinvar(win, '&winhl', 'Normal:Pmenu')
+  setlocal
+        \ buftype=nofile
+        \ nobuflisted
+        \ bufhidden=hide
+        \ nonumber
+        \ norelativenumber
+        \ signcolumn=no
+endfunction
+
 " chromatica
 let g:chromatica#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:chromatica#enable_at_startup=1
